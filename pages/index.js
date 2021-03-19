@@ -1,65 +1,51 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styled from 'styled-components'
+import Block from '../components/basics/Block'
+import Header from '../components/Header'
+import Hero from '../components/Hero'
+import Figure from '../components/Figure'
+import { useMediaQuery } from "@material-ui/core";
+//import styles from '../styles/Home.module.css'
 
 export default function Home() {
+
+  const match = useMediaQuery('(min-width: 780px)')
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next!!!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+    <Container direction="column">
+       <Header/>
+       <Section>
+        <Hero/>
+       { !match ? <FigureJ width={250} height={270}/> : <Figure/>}
+      </Section>
+    </Container>
   )
 }
+
+const Container = styled(Block)`
+  background-color: ${({ theme }) => theme.bg.main};
+  min-width: ${({ theme }) => theme.size('px', 350)};
+  min-height: 100vh;
+  padding: 0 0.5rem;
+`
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  @media only screen and (min-width: 780px) {
+    && {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+}
+`
+
+const FigureJ = styled(Figure)`
+  margin: ${({ theme }) => theme.size('px', 60)} 0;
+`
+
+const H1 = styled.h1`
+  color: ${({ theme }) => theme.text.primary};
+`
