@@ -1,11 +1,12 @@
 import React from "react";
+import { ButtonContainer } from "./styles";
 
-function Header() {
+function Button({ children, ...rest }) {
     return (
-        <div>
-            smt
-        </div>
+        <ButtonContainer {...rest}>
+            { children }
+        </ButtonContainer>
     )
 }
 
-export default Header;
+export default Button;

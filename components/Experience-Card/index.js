@@ -1,11 +1,12 @@
 import React from "react";
+import { CardContainer } from "./styles";
 
-function Header() {
+function ExperienceCard() {
     return (
-        <div>
-            smt
-        </div>
+        <CardContainer>
+            
+        </CardContainer>
     )
 }
 
-export default Header;
+export default ExperienceCard;
