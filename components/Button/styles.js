@@ -6,5 +6,6 @@ export const ButtonContainer = styled.button`
   justify-content: center;
   border: none;
   outline: none;
+  cursor: pointer;
 `;
 

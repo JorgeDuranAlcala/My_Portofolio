@@ -17,12 +17,15 @@ export const Section = styled.section`
   align-items: center;
   width: 100%;
   height: 100%;
-  @media only screen and (min-width: 780px) {
-    && {
-      flex-direction: row;
-      justify-content: space-between;
-    }
+  @media only screen and ${({ theme }) => theme.breakpoints.min.md} {
+    flex-direction: row;
+    height: 100vh;
+  }
 }
+`
+
+export const MainSection = styled(Section)`
+  
 `
 
 export const FigureJ = styled(Figure)`

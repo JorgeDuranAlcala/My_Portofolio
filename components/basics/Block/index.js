@@ -16,4 +16,6 @@ const Container = styled.div`
     flex-direction: ${({ direction = 'row' }) => direction};
     justify-content: ${({ justify }) => justify};
     align-items: ${({ align }) => align};
+    flex: ${({ flex }) => flex};
+    flex-wrap: ${({ wrap }) => wrap}l
 `

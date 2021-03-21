@@ -1,11 +1,26 @@
 import React from "react";
+import { 
+    FormContainer, 
+    InputsContainer, 
+    Input, 
+    EnailMessageArea,
+    SendEmailBtn
+} from './styles.js'
 
-function Header() {
+function ContactForm() {
     return (
-        <div>
-            smt
-        </div>
+        <FormContainer>
+            <InputsContainer>
+                <label>Name</label>
+                <Input type="text"/>
+                <label>Email</label>
+                <Input type="email"/>
+            </InputsContainer>
+            <label>Message</label>
+            <EnailMessageArea/>
+            <SendEmailBtn>Send Email</SendEmailBtn>
+        </FormContainer>
     )
 }
 
-export default Header;
+export default ContactForm;
