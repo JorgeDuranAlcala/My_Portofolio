@@ -12,7 +12,6 @@ import { minOrMaxBreakpoint } from "../utils";
 
 export default function Home() {
   const match = useMediaQuery("(min-width: 780px)");
-  console.log(minOrMaxBreakpoint())
 
   const renderProjects = () => {
     return [1,2,3].map((_, i) => <Project key={i}/>)
