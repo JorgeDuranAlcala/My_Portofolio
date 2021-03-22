@@ -4,7 +4,7 @@ import Figure from "../components/Figure";
 import Text from '../components/Text'
 import Block from '../components/basics/Block'
 import { useMediaQuery } from "@material-ui/core";
-import { Section, SubTitle, Container, FigureJ, SeeMoreBtn, ProfileImg, AboutMeText, CardsContainer } from "./styles";
+import { Section, SubTitle, Container, FigureJ, SeeMoreBtn, ProfileImg, AboutMeText, CardsContainer } from "../styles/styles";
 import Project from "../components/Project";
 import ExperienceCard from "../components/Experience-Card";
 import ContactForm from "../components/Contact-Form";
