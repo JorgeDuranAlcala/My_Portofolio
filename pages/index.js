@@ -1,25 +1,38 @@
+import React from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Figure from "../components/Figure";
-import Text from '../components/Text'
-import Block from '../components/basics/Block'
+import Text from "../components/Text";
+import Block from "../components/basics/Block";
 import { useMediaQuery } from "@material-ui/core";
-import { Section, SubTitle, Container, FigureJ, SeeMoreBtn, ProfileImg, AboutMeText, CardsContainer } from "../styles/styles";
+import {
+  Section,
+  SubTitle,
+  Container,
+  FigureJ,
+  SeeMoreBtn,
+  ProfileImg,
+  AboutMeText,
+  CardsContainer,
+} from "../styles/styles";
 import Project from "../components/Project";
 import ExperienceCard from "../components/Experience-Card";
 import ContactForm from "../components/Contact-Form";
-import { minOrMaxBreakpoint } from "../utils";
+import { fetchEntries } from "../utils/fetchEntries";
+import { formatItems } from "../utils/format-contentful-data";
 
-export default function Home() {
+export default function Home({ projects }) {
   const match = useMediaQuery("(min-width: 780px)");
 
+  //console.log("inside / page", projects);
+
   const renderProjects = () => {
-    return [1,2,3].map((_, i) => <Project key={i}/>)
-  }
+    return projects.map((project, i) => <Project key={i} {...project} />);
+  };
 
   const renderCards = () => {
-    return [0,0,0].map((_, i) => <ExperienceCard key={i}/>)
-  }
+    return [0, 0, 0].map((_, i) => <ExperienceCard key={i} />);
+  };
 
   return (
     <Container direction="column">
@@ -32,9 +45,7 @@ export default function Home() {
       <SubTitle>My work</SubTitle>
       <Section id="my-work-section">
         <Block direction="column">
-          <Block wrap="wrap">
-            {renderProjects()}
-          </Block>
+          <Block wrap="wrap">{renderProjects()}</Block>
           <Block justify="center" align="center">
             <SeeMoreBtn>See More</SeeMoreBtn>
           </Block>
@@ -43,27 +54,45 @@ export default function Home() {
 
       <SubTitle>About me</SubTitle>
       <Section id="about-section">
-          <ProfileImg 
-            src="\profile-picture.png" 
-          />
-          <AboutMeText variant="body1" size={20} fontweight={300}>
-            <Text fontweight={600}>
-              I'm a <Text variant="caption" secondary="true">freelancer</Text>
+        <ProfileImg src="\profile-picture.png" />
+        <AboutMeText variant="body1" size={20} fontWeight={300}>
+          <Text fontWeight={600}>
+            I'm a{" "}
+            <Text variant="caption" secondary="true">
+              freelancer
             </Text>
-             ipsum dolor sit amet, consectetur adipiscing elit. Dignissim nascetur dolor, diam morbi pretium ac nibh. Aliquam pharetra, sed  diam   ut. Netus vitae etiam fringilla urna, sed massa felis, massa at. Feugiat cursus ornare adipiscing posuere augue turpis nunc. Tellus     ultrices magna fermentum felis imperdiet montes, pellentesque. Duis ac nisl in blandit dis vestibulum aenean quam malesuada.
-          </AboutMeText>
+          </Text>
+          ipsum dolor sit amet, consectetur adipiscing elit. Dignissim nascetur
+          dolor, diam morbi pretium ac nibh. Aliquam pharetra, sed diam ut.
+          Netus vitae etiam fringilla urna, sed massa felis, massa at. Feugiat
+          cursus ornare adipiscing posuere augue turpis nunc. Tellus ultrices
+          magna fermentum felis imperdiet montes, pellentesque. Duis ac nisl in
+          blandit dis vestibulum aenean quam malesuada.
+        </AboutMeText>
       </Section>
 
       <SubTitle>Experience</SubTitle>
-      <Section id="experience-section">
-            {renderCards()}
-      </Section>
+      <Section id="experience-section">{renderCards()}</Section>
 
       <SubTitle>Contact Me</SubTitle>
       <Section id="contact-me-section">
-        <ContactForm/>
+        <ContactForm />
       </Section>
-
     </Container>
   );
+}
+
+export async function getStaticProps() {
+  try {
+    const items = await fetchEntries({ "sys.contentType.sys.id": "projects" });
+    const projects = formatItems(items, "projects");
+
+    return {
+      props: {
+        projects,
+      },
+    };
+  } catch (e) {
+    throw new Error(e.message);
+  }
 }
