@@ -21,7 +21,17 @@ export const theme = {
     text: {
         color: {...txt_color},
     },
-    size: utils.size
+    size: utils.size,
+    breakpoints: {
+        min: { 
+            sm: utils.minOrMaxBreakpoint('min', 350), 
+            md: utils.minOrMaxBreakpoint('min', 750)
+        },
+        max: { 
+            sm: utils.minOrMaxBreakpoint('max', 350), 
+            md: utils.minOrMaxBreakpoint('max', 750)
+         }
+    }
 }
 
 export const dark_theme = {

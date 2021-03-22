@@ -1,11 +1,10 @@
 import React from "react";
+import { Container } from "./styles";
 
-function Header() {
+function Project() {
     return (
-        <div>
-            smt
-        </div>
+        <Container></Container>
     )
 }
 
-export default Header;
+export default Project;
