@@ -20,25 +20,28 @@ import ExperienceCard from "../components/Experience-Card";
 import ContactForm from "../components/Contact-Form";
 import { fetchEntries } from "../utils/fetchEntries";
 import { formatItems } from "../utils/format-contentful-data";
+import AboutMe from "../components/About-me";
 
-export default function Home({ projects }) {
+export default function Home({ projects = [], experiences = [], Author }) {
   const match = useMediaQuery("(min-width: 780px)");
-
-  //console.log("inside / page", projects);
+  console.log("data", {
+    projects,
+    experiences,
+  });
 
   const renderProjects = () => {
     return projects.map((project, i) => <Project key={i} {...project} />);
   };
 
   const renderCards = () => {
-    return [0, 0, 0].map((_, i) => <ExperienceCard key={i} />);
+    return experiences.map((exp, i) => <ExperienceCard key={i} {...exp} />);
   };
 
   return (
     <Container direction="column">
       <Header />
       <Section>
-        <Hero />
+        <Hero {...Author} />
         {!match ? <FigureJ width={250} height={270} /> : <Figure />}
       </Section>
 
@@ -55,20 +58,7 @@ export default function Home({ projects }) {
       <SubTitle>About me</SubTitle>
       <Section id="about-section">
         <ProfileImg src="\profile-picture.png" />
-        <AboutMeText variant="body1" size={20} fontWeight={300}>
-          <Text fontWeight={600}>
-            I'm a{" "}
-            <Text variant="caption" secondary="true">
-              freelancer
-            </Text>
-          </Text>
-          ipsum dolor sit amet, consectetur adipiscing elit. Dignissim nascetur
-          dolor, diam morbi pretium ac nibh. Aliquam pharetra, sed diam ut.
-          Netus vitae etiam fringilla urna, sed massa felis, massa at. Feugiat
-          cursus ornare adipiscing posuere augue turpis nunc. Tellus ultrices
-          magna fermentum felis imperdiet montes, pellentesque. Duis ac nisl in
-          blandit dis vestibulum aenean quam malesuada.
-        </AboutMeText>
+        <AboutMe aboutMe={Author?.aboutMe} />
       </Section>
 
       <SubTitle>Experience</SubTitle>
@@ -84,15 +74,53 @@ export default function Home({ projects }) {
 
 export async function getStaticProps() {
   try {
-    const items = await fetchEntries({ "sys.contentType.sys.id": "projects" });
-    const projects = formatItems(items, "projects");
+    const query = `
+    query {
+      projectsCollection {
+        items {
+          title
+          img {
+            url
+          }
+        }
+      }
+      authorCollection {
+        items {
+          heroTitle
+          heroDesc
+          aboutMe
+        }
+      }
+      experienceCollection {
+        items {
+          title
+          employerName
+          startDate
+          endDate
+          experienceDesc {
+            json 
+          }
+        }
+      }
+    }
+    `;
+
+    const {
+      projectsCollection: projects,
+      experienceCollection: experiences,
+      authorCollection: {
+        items: [AuthorItems],
+      },
+    } = await fetchEntries(query);
 
     return {
       props: {
-        projects,
+        projects: projects.items,
+        experiences: experiences.items,
+        Author: AuthorItems,
       },
     };
   } catch (e) {
-    throw new Error(e.message);
+    console.log(e.message);
   }
 }
