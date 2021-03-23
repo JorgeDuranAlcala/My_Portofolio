@@ -1,24 +1,47 @@
 import React from "react";
 import Text from "../Text";
-import { CardContainer, CardTitle, Subtitle, CardContent, CardDate } from "./styles";
+import {
+  CardContainer,
+  CardTitle,
+  Subtitle,
+  CardContent,
+  CardDate,
+} from "./styles";
+import { format, formatDistance } from "date-fns";
 
-function ExperienceCard() {
-    return (
-        <CardContainer direction="column" align="center">
-            <CardTitle variant="h3" size={32} lineHeight={48} fontWeight={700}>
-                React developer
-            </CardTitle>
-            <Subtitle variant="subtitle1" size={28} lineHeight={42} fontWeight={400}>
-                Uma krishnam 
-            </Subtitle>
-            <CardDate variant="subtitle2" size={18} lineHeight={27} fontWeight={400}>
-                Julio 2020 - dic 2020 - 6 meses
-            </CardDate>
-            <CardContent variant="body1" size={18} lineHeight={27} fontWeight={400}>
-                I builded UI components using react, Material-ui and Typescript to be later used in a project managment App
-            </CardContent>
-        </CardContainer>
-    )
+function ExperienceCard({
+  title,
+  employerName,
+  startDate,
+  endDate,
+  experienceDesc: {
+    json: {
+      content: [
+        {
+          content: [{ value: desc }],
+        },
+      ],
+    },
+  },
+}) {
+  return (
+    <CardContainer direction="column" align="center">
+      <CardTitle variant="h3" size={32} lineHeight={48} fontWeight={700}>
+        {title}
+      </CardTitle>
+      <Subtitle variant="subtitle1" size={28} lineHeight={42} fontWeight={400}>
+        {employerName}
+      </Subtitle>
+      <CardDate variant="subtitle2" size={14} lineHeight={27} fontWeight={400}>
+        {format(new Date(startDate), "MMM yyyy")} -{" "}
+        {format(new Date(endDate), "MMM yyyy")} -{" "}
+        {formatDistance(new Date(startDate), new Date(endDate))}
+      </CardDate>
+      <CardContent variant="body1" size={18} lineHeight={27} fontWeight={400}>
+        {desc}
+      </CardContent>
+    </CardContainer>
+  );
 }
 
 export default ExperienceCard;
