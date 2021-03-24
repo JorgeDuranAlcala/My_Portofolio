@@ -47,10 +47,32 @@ export default function Home({ projects = [], experiences = [], Author }) {
 
       <SubTitle>My work</SubTitle>
       <Section id="my-work-section">
-        <Block direction="column">
-          <Block wrap="wrap">{renderProjects()}</Block>
+        {/*    <Block direction="column">
+          <Block grid autoFill min="250px" max="1fr" autoFlow="dense">
+            {renderProjects()}
+          </Block>
           <Block justify="center" align="center">
             <SeeMoreBtn>See More</SeeMoreBtn>
+          </Block>
+        </Block> */}
+        <Block
+          style={{
+            display: "grid",
+            placeItems: "center",
+            width: "100%",
+            backgroundColor: "greenyellow",
+          }}
+        >
+          <Block
+            grid
+            autoFill
+            min="320px"
+            max="1fr"
+            autoFlow="dense"
+            gap={15}
+            style={{ width: "100%" }}
+          >
+            {renderProjects()}
           </Block>
         </Block>
       </Section>
