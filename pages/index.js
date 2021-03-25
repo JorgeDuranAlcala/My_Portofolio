@@ -57,8 +57,6 @@ export default function Home({ projects = [], experiences = [], Author }) {
         </Block> */}
         <Block
           style={{
-            display: "grid",
-            placeItems: "center",
             width: "100%",
             backgroundColor: "greenyellow",
           }}
