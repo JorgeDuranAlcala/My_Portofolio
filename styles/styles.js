@@ -24,7 +24,7 @@ export const Section = styled.section`
 }
 `;
 
-export const MainSections = styled(Section)``;
+export const MainSection = styled(Section)``;
 
 export const FigureJ = styled(Figure)`
   margin: ${({ theme }) => theme.size("px", 60)} 0;

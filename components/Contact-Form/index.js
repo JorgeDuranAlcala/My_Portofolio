@@ -1,4 +1,5 @@
 import React from "react";
+import useEmail from "../../hooks/useEmail.js";
 import {
   FormContainer,
   InputsContainer,
@@ -8,17 +9,20 @@ import {
 } from "./styles.js";
 
 function ContactForm() {
+  const { sendEmail } = useEmail();
+
   return (
-    <FormContainer>
+    <FormContainer onSubmit={sendEmail}>
       <InputsContainer>
+        <input type="hidden" name="to_name" value="Jorge Duran" />
         <label>Name</label>
-        <Input type="text" />
+        <Input type="text" name="from_name" />
         <label>Email</label>
-        <Input type="email" />
+        <Input type="email" name="user_email" />
       </InputsContainer>
       <label>Message</label>
-      <EnailMessageArea />
-      <SendEmailBtn>Send Email</SendEmailBtn>
+      <EnailMessageArea rows={7} name="message" />
+      <SendEmailBtn type="submit">Send Email</SendEmailBtn>
     </FormContainer>
   );
 }
