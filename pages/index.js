@@ -30,7 +30,9 @@ export default function Home({ projects = [], experiences = [], Author }) {
   });
 
   const renderProjects = () => {
-    return projects.map((project, i) => <Project key={i} {...project} />);
+    return projects.map((project, i) => (
+      <Project key={i} justifySelf="center" {...project} />
+    ));
   };
 
   const renderCards = () => {
@@ -47,12 +49,40 @@ export default function Home({ projects = [], experiences = [], Author }) {
 
       <SubTitle>My work</SubTitle>
       <Section id="my-work-section">
-        <Block direction="column">
-          <Block wrap="wrap">{renderProjects()}</Block>
+        <Block style={{ width: "100%" }} direction="column">
+          <Block
+            style={{ width: "100%" }}
+            grid
+            autoFit
+            min="320px"
+            max="1fr"
+            autoFlow="dense"
+            gap={15}
+          >
+            {renderProjects()}
+          </Block>
           <Block justify="center" align="center">
             <SeeMoreBtn>See More</SeeMoreBtn>
           </Block>
         </Block>
+        {/*  <Block
+          style={{
+            width: "100%",
+            backgroundColor: "greenyellow",
+          }}
+        >
+          <Block
+            grid
+            autoFill
+            min="320px"
+            max="1fr"
+            autoFlow="dense"
+            gap={15}
+            style={{ width: "100%" }}
+          >
+            {renderProjects()}
+          </Block>
+        </Block> */}
       </Section>
 
       <SubTitle>About me</SubTitle>
