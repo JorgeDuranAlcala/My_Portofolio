@@ -20,7 +20,8 @@ export const FullScreen = styled(Block)`
     height: 100%;
     z-index: 1000;
     transition: left 0.5s ease;
-    background: ${({ theme }) => theme.bg.main};
+    background: ${({ theme, changeBg }) =>
+      !changeBg ? theme.bg.main : theme.bg.secondary};
   }
 `;
 
