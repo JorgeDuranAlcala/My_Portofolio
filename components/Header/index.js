@@ -48,7 +48,11 @@ function Header() {
 
   const renderMenu = (fullscreen) =>
     fullscreen ? (
-      <FullScreen direction="column" active={activeFullScreen}>
+      <FullScreen
+        direction="column"
+        active={activeFullScreen}
+        changeBg={changeBg}
+      >
         <Block
           style={{ paddingRight: 20, paddingTop: 20 }}
           flex={0.2}
