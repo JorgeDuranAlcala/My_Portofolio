@@ -55,9 +55,6 @@ function Project({
           <PerfectScrollbar>
             <p style={{ maxHeight: 150, overflowY: "scroll" }}>
               {projectDescription}
-              've Created a completed traductor calling an API from google
-              translate, it can use all languages supported by google's API
-              using just Vanilla Javascript and
             </p>
           </PerfectScrollbar>
           <PreviewBtn
