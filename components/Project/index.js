@@ -16,6 +16,7 @@ import Block from "../basics/Block";
 import Image from "next/image";
 import { useTheme } from "styled-components";
 import { useMediaQuery } from "@material-ui/core";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 const DEFAULT_IMAGE = "https://i.imgur.com/UKMHLmx.png";
 
@@ -37,8 +38,6 @@ function Project({
   const [open, setOpen] = useState(false);
   const onClose = () => setOpen(false);
   const onOpen = () => setOpen((prev) => !prev);
-  const theme = useTheme();
-  const match = useMediaQuery(theme.breakpoints.min.md);
 
   const body = (
     <ModalBody>
@@ -53,13 +52,21 @@ function Project({
         </Block>
         <Block direction="column">
           <h1>{title}</h1>
-          <p style={{ maxHeight: 100, overflowY: "scroll" }}>
-            {projectDescription}
-            've Created a completed traductor calling an API from google
-            translate, it can use all languages supported by google's API using
-            just Vanilla Javascript and
-          </p>
-          <PreviewBtn href={link} size={20} color="#ddd" fontWeight="bold">
+          <PerfectScrollbar>
+            <p style={{ maxHeight: 150, overflowY: "scroll" }}>
+              {projectDescription}
+              've Created a completed traductor calling an API from google
+              translate, it can use all languages supported by google's API
+              using just Vanilla Javascript and
+            </p>
+          </PerfectScrollbar>
+          <PreviewBtn
+            href={link}
+            target="_blank"
+            size={20}
+            color="#ddd"
+            fontWeight="bold"
+          >
             Preview
           </PreviewBtn>
         </Block>

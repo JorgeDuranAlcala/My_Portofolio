@@ -8,7 +8,7 @@ function Hero({ heroTitle: title, heroDesc: desc }) {
   return (
     <Container direction="column">
       <Text variant="h1" size={40} fontWeight={900} lineHeight={60}>
-        <Text variant="caption" secondary="true">
+        <Text variant="caption" secondary="true" fontWeight={900}>
           J
         </Text>
         orge Duran ,{title}
