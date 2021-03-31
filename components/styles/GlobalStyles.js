@@ -3,13 +3,14 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
     html,
     body {
-    padding: 0;
-    margin: 0;
+        padding: 0;
+        margin: 0;
+        scroll-behavior: smooth;
     }
 
     * {
-    box-sizing: border-box;
-    font-family: 'Poppins';
+        box-sizing: border-box;
+        font-family: 'Poppins';
     }
 
     a {

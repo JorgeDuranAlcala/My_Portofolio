@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Anchor = ({ children, ...rest }) => {
-  return <StyledAnchor {...rest}>{children}</StyledAnchor>;
-};
+const Anchor = React.forwardRef(({ children, ...rest }, ref) => {
+  return (
+    <StyledAnchor ref={ref} {...rest}>
+      {children}
+    </StyledAnchor>
+  );
+});
 
 export default Anchor;
 

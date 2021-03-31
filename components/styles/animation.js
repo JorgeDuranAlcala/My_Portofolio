@@ -11,7 +11,22 @@ const FadeIn = keyframes`
   }
 `;
 
-export const fadeIn = ({ time = "1s", type = "ease" } = {}) =>
+const GradualyIncresing = keyframes`
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(50)
+  }
+`;
+
+const createAnimation = ({ animationName, time = "1s", type = "ease" } = {}) =>
   css`
-    animation: ${FadeIn} ${time} ${type};
+    animation: ${animationName} ${time} ${type};
   `;
+
+export const gradualIncresing = (opts = {}) =>
+  createAnimation({ animationName: GradualyIncresing, ...opts });
+
+export const fadeIn = (opts = {}) =>
+  createAnimation({ animationName: FadeIn, ...opts });

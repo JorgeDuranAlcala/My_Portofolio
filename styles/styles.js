@@ -8,7 +8,6 @@ export const Container = styled(Block)`
   background-color: ${({ theme }) => theme.bg.main};
   min-width: ${({ theme }) => theme.size("px", 350)};
   min-height: 100vh;
-  padding: 0 0.5rem;
 `;
 export const Section = styled.section`
   display: flex;
@@ -17,6 +16,8 @@ export const Section = styled.section`
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 0 40px;
+  margin: 8vmin 0;
   @media only screen and ${({ theme }) => theme.breakpoints.min.md} {
     flex-direction: row;
     min-height: 100vh;
@@ -33,8 +34,6 @@ export const FigureJ = styled(Figure)`
 export const SubTitle = styled.h3`
   position: relative;
   color: ${({ theme }) => theme.text.primary};
-  font-weight: bold;
-  font-style: normal;
   font-weight: bold;
   font-size: ${({ theme }) => theme.size("px", 32)};
   line-height: ${({ theme }) => theme.size("px", 48)};
