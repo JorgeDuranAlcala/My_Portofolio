@@ -18,6 +18,7 @@ import { useTheme } from "styled-components";
 import { useMediaQuery } from "@material-ui/core";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
+*/ default image */
 const DEFAULT_IMAGE = "https://i.imgur.com/UKMHLmx.png";
 
 function Project({
